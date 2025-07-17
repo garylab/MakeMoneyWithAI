@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/garylab-earnwithai-badge.png)](https://mseep.ai/app/garylab-earnwithai)
+
 # Earn With AI
 
 **Earn Money** with Open Source AI Project.
