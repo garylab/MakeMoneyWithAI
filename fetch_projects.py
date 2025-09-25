@@ -115,17 +115,6 @@ def fetch_extra_repo_details(extra_repos):
     return detailed_repos
 
 def generate_business_model(repository):
-    """Generate business model for a single repository using LLM."""
-    print(f"Generating business model for {repository['name']}...")
-    
-    repo_info = {
-        "id": repository['id'],
-        "name": repository['name'],
-        "description": repository['description'] or 'No description',
-        "url": repository['html_url'],
-        "stars": repository['stargazers_count']
-    }
-    
     prompt = f"""
 You are an AI business consultant. Describe following repository in one sentence (around 50 words) how it can help me make money. Highlight keywords in bold (e.g., services, SaaS, automation, chatbot, NFT, templates) and clearly mention the monetization approaches such as subscriptions, project-based fees, hosting services, selling templates, or consulting and so on.
 
