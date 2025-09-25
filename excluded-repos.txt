@@ -41,3 +41,5 @@ Awesome-GPT-Agents
 awesome-chatgpt
 awesome-pretrained-chinese-nlp-models
 awesome-mcp-servers
+llm_interview_note
+md
