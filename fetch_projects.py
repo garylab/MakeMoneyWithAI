@@ -116,14 +116,14 @@ def fetch_extra_repo_details(extra_repos):
 
 def generate_business_model(repository):
     prompt = f"""
-You are an AI business consultant. Describe following repository in one sentence (around 50 words) how it can help me make money. Highlight keywords in bold (e.g., services, SaaS, automation, chatbot, NFT, templates) and clearly mention the monetization approaches such as subscriptions, project-based fees, hosting services, selling templates, or consulting and so on.
+You are an AI business consultant. Describe following repository in one sentence (around 25 words) how it can help me make money. Highlight keywords in bold (e.g., services, SaaS, automation, chatbot, NFT, templates) and clearly mention the monetization approaches such as subscriptions, project-based fees, hosting services, selling templates, or consulting and so on.
 
 - Repository: {repository['name']}
 - Description: {repository['description'] or 'No description'}
 - URL: {repository['html_url']}
 - Stars: {repository['stargazers_count']}
 
-Return only the 40-word business analysis as plain text (no JSON, no formatting, no extra explanation).
+Return only the 25-word business analysis as plain text (no JSON, no formatting, no extra explanation).
 """
 
     payload = {
@@ -220,15 +220,8 @@ def convert_csv_to_readme():
         
         for index, repo_data in enumerate(repos_list, start=1):
             stars = format_stars(repo_data['stars'])
-            file.write(f"## {index}. [{repo_data['name']}]({repo_data['url']})\n")
-            file.write(f"> {stars} ⭐\n\n")
-            
-            # Use business model if available, otherwise show "No description"
             business_model = repo_data.get('business_model', '')
-            if business_model:
-                file.write(f"{business_model}\n\n")
-            else:
-                file.write("No description\n\n")
+            file.write(f"{index}. **[{repo_data['name']}]({repo_data['url']})** | *{stars} ⭐* | {business_model}\n")
     
     print(f"Converted {len(repos_list)} repositories from CSV to README.md")
 
