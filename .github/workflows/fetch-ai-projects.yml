@@ -27,6 +27,8 @@ jobs:
       - name: Fetch AI projects and update markdown
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+
         run: python fetch_projects.py
 
       - name: Commit and push changes
