@@ -151,54 +151,6 @@ Return only the 25-word business analysis as plain text (no JSON, no formatting,
     print(f"Generated business model for {repository['name']}")
     return business_model
 
-def save_to_markdown_and_csv(repositories, excluded_repos, business_models=None):
-    seen = set()
-    unique_repos = []
-
-    # Remove duplicates (repos appearing in both topics)
-    for repo in repositories:
-        if repo["id"] not in seen and repo["name"] not in excluded_repos:
-            seen.add(repo["id"])
-            unique_repos.append(repo)
-
-    # Sort repositories by stars in descending order
-    unique_repos.sort(key=lambda x: x["stargazers_count"], reverse=True)
-
-    # Save to CSV file
-    with open(CSV_FILE, 'w', newline='', encoding='utf-8') as file:
-        writer = csv.writer(file)
-        writer.writerow(['id', 'owner', 'name', 'stars', 'url', 'business_model'])
-        
-        for repo in unique_repos:
-            owner = repo['owner']['login']
-            business_model = business_models.get(repo['id'], '') if business_models else ''
-            writer.writerow([
-                repo['id'],
-                owner,
-                repo['name'],
-                repo['stargazers_count'],
-                repo['html_url'],
-                business_model
-            ])
-    
-    print(f"Saved {len(unique_repos)} repositories to CSV file")
-
-    # Save to markdown file
-    with open(OUTPUT_FILE, "w") as file:
-        file.write("# Earn With AI\n\n")
-        file.write("**Earn Money** with Open Source AI Project.\n\n")
-        for index, repo in enumerate(unique_repos, start=1):
-            stars = format_stars(repo['stargazers_count'])
-            file.write(f"## {index}. [{repo['name']}]({repo['html_url']})\n")
-            file.write(f"> {stars} ⭐\n\n")
-            
-            # Use business model if available, otherwise use original description
-            if business_models and repo['id'] in business_models:
-                file.write(f"{business_models[repo['id']]}\n\n")
-            else:
-                file.write(f"{repo['description'] or 'No description'}\n\n")
-    
-    print(f"Saved {len(unique_repos)} repositories to README.md")
 
 def convert_csv_to_readme():
     """Read all data from CSV and convert to README.md format, sorted by stars."""
@@ -215,13 +167,13 @@ def convert_csv_to_readme():
     
     # Save to markdown file
     with open(OUTPUT_FILE, "w") as file:
-        file.write("# Earn With AI\n\n")
-        file.write("**Earn Money** with Open Source AI Project.\n\n")
+        file.write("# Make Money With AI\n\n")
+        file.write("**Make Money With AI** is a curated list of AI tools and projects that help you turn open-source into income.\n\n")
         
         for index, repo_data in enumerate(repos_list, start=1):
             stars = format_stars(repo_data['stars'])
             business_model = repo_data.get('business_model', '')
-            file.write(f"{index}. **[{repo_data['name']}]({repo_data['url']})** | *{stars} ⭐* | {business_model}\n")
+            file.write(f"{index}. **[{repo_data['name']}]({repo_data['url']})** <span style='color: #eac54f'>★{stars}</span> <span style='color:#ccc'>{business_model}</span>\n")
     
     print(f"Converted {len(repos_list)} repositories from CSV to README.md")
 
