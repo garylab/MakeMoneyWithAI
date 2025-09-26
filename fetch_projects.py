@@ -173,7 +173,7 @@ def convert_csv_to_readme():
         for index, repo_data in enumerate(repos_list, start=1):
             stars = format_stars(repo_data['stars'])
             business_model = repo_data.get('business_model', '')
-            file.write(f"{index}. **[{repo_data['name']}]({repo_data['url']})** <span style='color: #eac54f'>★{stars}</span> <span style='color:#ccc'>{business_model}</span>\n")
+            file.write(f"{index}. **[{repo_data['name']}]({repo_data['url']})** <small>★{stars}</small> {business_model}\n")
     
     print(f"Converted {len(repos_list)} repositories from CSV to README.md")
 
