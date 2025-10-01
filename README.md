@@ -220,4 +220,3 @@
 216. **[tensorzero](https://github.com/tensorzero/tensorzero)** | ☆10.4k | Leverage an open-source industrial-grade stack with **LLM** **gateway**, **observability**, **optimization**, **evaluation**, and **experimentation** to deploy faster, reduce costs, scale, and monetize enterprise LLM services profitably.
 217. **[ms-swift](https://github.com/modelscope/ms-swift)** | ☆10.2k | Offers **PEFT** and **Full-parameter** fine-tuning across 500+ **LLMs** and 200+ **MLLMs**, enabling fast, scalable productization, customization, and monetization of AI solutions for enterprises and startups.
 218. **[openai-realtime-agents](https://github.com/openai/openai-realtime-agents)** | ☆6.5k | Demonstrates building **Realtime**-powered autonomous **agents** to monetize via virtual **assistants**, workflow **automations**, analytics, premium **SaaS** integrations, subscription features, developer APIs for rapid prototyping and scaling.
-
