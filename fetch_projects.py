@@ -116,14 +116,18 @@ def fetch_extra_repo_details(extra_repos):
 
 def generate_business_model(repository):
     prompt = f"""
-You are an AI business consultant. Describe following repository in one sentence (around 25 words) how it can help me make money. Highlight keywords in bold (e.g., services, SaaS, automation, chatbot, NFT, templates) and clearly mention the monetization approaches such as subscriptions, project-based fees, hosting services, selling templates, or consulting and so on.
+You are an AI business consultant. Describe following repository in one sentence (around 20 words) to describe what capacities it has that can help me make money. 
 
 - Repository: {repository['name']}
 - Description: {repository['description'] or 'No description'}
 - URL: {repository['html_url']}
 - Stars: {repository['stargazers_count']}
 
-Return only the 25-word business analysis as plain text (no JSON, no formatting, no extra explanation).
+Note:
+- Highlight keywords in bold.
+- Return only the 25-word business analysis as plain text (no JSON, no formatting, no extra explanation). 
+- Do not include any other text than the business analysis.
+- Do not include the repository name and URL in the business analysis.
 """
 
     payload = {
@@ -205,7 +209,7 @@ def save_repos_to_csv(repos_dict):
     print(f"Saved {len(repos_list)} repositories to CSV file")
 
 
-if __name__ == "__main__":
+def main(max_repos=None):
     if not os.getenv('GITHUB_TOKEN'):
         raise ValueError("GITHUB_TOKEN is not set")
     
@@ -231,7 +235,7 @@ if __name__ == "__main__":
     seen = set()
     unique_repos = []
     
-    for repo in all_repos:
+    for repo in all_repos[:max_repos]:
         if repo["id"] not in seen and repo["name"] not in excluded_repos:
             seen.add(repo["id"])
             unique_repos.append(repo)
@@ -257,3 +261,9 @@ if __name__ == "__main__":
     
     # 5. Read from CSV and convert to README.md
     convert_csv_to_readme()
+
+
+if __name__ == "__main__":
+    import sys
+    max_repos = int(sys.argv[1]) if len(sys.argv) > 1 else None
+    main(max_repos)
