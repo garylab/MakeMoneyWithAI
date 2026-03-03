@@ -175,7 +175,11 @@ Note:
 
 
 def convert_csv_to_readme():
-    """Read all data from CSV and convert to README.md format, sorted by stars."""
+    """Read all data from CSV and convert to README.md format, sorted by stars.
+
+    Applies the same exclusion rules as the fetch step so anything listed in
+    excluded-repos.txt is filtered out from the final markdown as well.
+    """
     # Read existing repos from CSV (including any new ones we just added)
     existing_repos, _ = read_existing_repos_from_csv()
     
@@ -183,8 +187,24 @@ def convert_csv_to_readme():
         print("No repositories found in CSV")
         return
     
-    # Convert to list and sort by stars in descending order
-    repos_list = list(existing_repos.values())
+    # Load exclusion rules (owner/repo and name-only)
+    excluded_full_names, excluded_names = load_excluded()
+
+    # Convert to list and filter out excluded + sort by stars
+    repos_list = []
+    for repo_data in existing_repos.values():
+        owner = repo_data["owner"]
+        name = repo_data["name"]
+        full_name = f"{owner}/{name}"
+
+        full_name_lower = full_name.lower()
+        name_lower = name.lower()
+
+        if full_name_lower in excluded_full_names or name_lower in excluded_names:
+            continue
+
+        repos_list.append(repo_data)
+
     repos_list.sort(key=lambda x: x['stars'], reverse=True)
     
     # Save to markdown file
@@ -200,13 +220,28 @@ def convert_csv_to_readme():
     print(f"Converted {len(repos_list)} repositories from CSV to README.md")
 
 def save_repos_to_csv(repos_dict):
-    """Save all repositories to CSV file."""
+    """Save all repositories to CSV file, applying exclusion rules."""
     if not repos_dict:
         print("No repositories to save to CSV")
         return
     
-    # Convert to list and sort by stars for CSV consistency
-    repos_list = list(repos_dict.values())
+    # Load exclusion rules (owner/repo and name-only)
+    excluded_full_names, excluded_names = load_excluded()
+
+    # Convert to list, apply exclusions, and sort by stars for CSV consistency
+    repos_list = []
+    for repo_data in repos_dict.values():
+        owner = repo_data["owner"]
+        name = repo_data["name"]
+        full_name = f"{owner}/{name}"
+
+        full_name_lower = full_name.lower()
+        name_lower = name.lower()
+
+        if full_name_lower in excluded_full_names or name_lower in excluded_names:
+            continue
+
+        repos_list.append(repo_data)
     repos_list.sort(key=lambda x: x['stars'], reverse=True)
     
     # Save to CSV file
@@ -281,7 +316,12 @@ def main(max_repos=None):
 
         # Check if this repo is new (not in existing CSV) and generate business model
         if repo["id"] not in existing_repo_ids:
-            business_model = generate_business_model(repo)
+            try:
+                business_model = generate_business_model(repo)
+            except Exception as e:
+                # If the OpenAI call fails for any reason, fall back gracefully
+                print(f"Failed to generate business model for {full_name}: {e}")
+                business_model = repo.get("description") or ""
 
             # Add to existing repos with business model
             existing_repos[repo["id"]] = {
