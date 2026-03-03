@@ -53,14 +53,32 @@ def format_stars(stars):
         return str(stars)  # No formatting for less than 1000
 
 def load_excluded():
-    """Load excluded repositories from excluded-repos.txt (owner/repo format)."""
-    excluded_repos = set()
+    """
+    Load excluded repositories from excluded-repos.txt.
+
+    Supports two formats per line:
+    - owner/repo       → matches that exact full_name
+    - name-or-prefix   → matches repository name only
+    """
+    excluded_full_names = set()
+    excluded_names = set()
+
+    if not os.path.exists(EXCLUDE_FILE):
+        return excluded_full_names, excluded_names
+
     with open(EXCLUDE_FILE, "r") as file:
         for line in file:
             line = line.strip()
-            if line:
-                excluded_repos.add(line)
-    return excluded_repos
+            if not line:
+                continue
+
+            line_lower = line.lower()
+            if "/" in line_lower:
+                excluded_full_names.add(line_lower)
+            else:
+                excluded_names.add(line_lower)
+
+    return excluded_full_names, excluded_names
 
 def load_extra_repos():
     """Load additional repositories from extra-repos.txt."""
@@ -222,11 +240,11 @@ def main(max_repos=None):
     
     # 2. Fetch all repos from GitHub API
     all_repos = []
-    excluded_repos = load_excluded()
+    excluded_full_names, excluded_names = load_excluded()
     for topic in TOPICS:
         all_repos.extend(fetch_repositories(topic))
     
-    # Add extra repositories
+    # Add extra repositories (always included unless explicitly excluded)
     extra_repos = load_extra_repos()
     all_repos.extend(fetch_extra_repo_details(extra_repos))
     print("Loaded extra repositories")
@@ -235,24 +253,45 @@ def main(max_repos=None):
     seen = set()
     unique_repos = []
     
-    for repo in all_repos[:max_repos]:
-        if repo["id"] not in seen and repo["name"] not in excluded_repos:
-            seen.add(repo["id"])
-            unique_repos.append(repo)
-            
-            # Check if this repo is new (not in existing CSV) and generate business model
-            if repo["id"] not in existing_repo_ids:
-                business_model = generate_business_model(repo)
-                
-                # Add to existing repos with business model
-                existing_repos[repo["id"]] = {
-                    'id': repo["id"],
-                    'owner': repo['owner']['login'],
-                    'name': repo['name'],
-                    'stars': repo['stargazers_count'],
-                    'url': repo['html_url'],
-                    'business_model': business_model
-                }
+    # Respect optional max_repos limit
+    repos_to_process = all_repos if max_repos is None else all_repos[:max_repos]
+
+    for repo in repos_to_process:
+        # Skip archived repositories
+        if repo.get("archived"):
+            continue
+
+        # Build identifiers for exclusion checks
+        owner_login = repo["owner"]["login"]
+        name = repo["name"]
+        full_name = repo.get("full_name", f"{owner_login}/{name}")
+
+        full_name_lower = full_name.lower()
+        name_lower = name.lower()
+
+        # Exclude if matches either full_name or name-only rule
+        if full_name_lower in excluded_full_names or name_lower in excluded_names:
+            continue
+
+        if repo["id"] in seen:
+            continue
+
+        seen.add(repo["id"])
+        unique_repos.append(repo)
+
+        # Check if this repo is new (not in existing CSV) and generate business model
+        if repo["id"] not in existing_repo_ids:
+            business_model = generate_business_model(repo)
+
+            # Add to existing repos with business model
+            existing_repos[repo["id"]] = {
+                'id': repo["id"],
+                'owner': owner_login,
+                'name': name,
+                'stars': repo['stargazers_count'],
+                'url': repo['html_url'],
+                'business_model': business_model
+            }
     
     print(f"Total unique repos: {len(unique_repos)}")
     
