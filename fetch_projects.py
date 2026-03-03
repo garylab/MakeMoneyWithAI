@@ -274,15 +274,16 @@ def main(max_repos=None):
     existing_repos, existing_repo_ids = read_existing_repos_from_csv()
     
     # 2. Fetch all repos from GitHub API
-    all_repos = []
     excluded_full_names, excluded_names = load_excluded()
+
+    # Add extra repositories first so they are always included even when max_repos is set
+    extra_repos = load_extra_repos()
+    extra_repo_details = fetch_extra_repo_details(extra_repos)
+    print(f"Loaded {len(extra_repo_details)} extra repositories")
+
+    all_repos = list(extra_repo_details)
     for topic in TOPICS:
         all_repos.extend(fetch_repositories(topic))
-    
-    # Add extra repositories (always included unless explicitly excluded)
-    extra_repos = load_extra_repos()
-    all_repos.extend(fetch_extra_repo_details(extra_repos))
-    print("Loaded extra repositories")
     
     # 3. Process all repos and generate business models for new ones
     seen = set()
