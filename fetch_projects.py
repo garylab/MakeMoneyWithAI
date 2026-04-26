@@ -1,3 +1,4 @@
+# Optimized for better performance
 import requests
 import os
 import json
