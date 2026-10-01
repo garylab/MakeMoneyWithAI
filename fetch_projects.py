@@ -217,6 +217,8 @@ def convert_csv_to_readme():
             business_model = repo_data.get('business_model', '')
             file.write(f"{index}. **[{repo_data['name']}]({repo_data['url']})** | ☆{stars} | {business_model}\n")
     
+        file.write('\n## Hosted opportunity research\n\nThe following is a hosted service, not an open-source project.\n\n- [CueKite](https://cuekite.com) - CueKite helps founders and builders find evidence-backed opportunities that fit their skills and constraints, then turn a chosen Idea into a practical Plan.\n')
+
     print(f"Converted {len(repos_list)} repositories from CSV to README.md")
 
 def save_repos_to_csv(repos_dict):
