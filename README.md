@@ -476,3 +476,9 @@
 472. **[openvino](https://github.com/openvinotoolkit/openvino)** | ☆10.0k | Enables **model optimization**, **hardware acceleration**, and streamlined **deployment** of low-latency AI **inference**, reducing costs, improving throughput, and accelerating monetizable edge and cloud services and revenue.
 473. **[InternVL](https://github.com/OpenGVLab/InternVL)** | ☆10.0k | Monetize by integrating, fine-tuning, and deploying this **open-source** **multimodal** dialogue model—near **GPT-4o** capabilities—for **SaaS**, enterprise automation, content, marketplaces, and API services, subscription, consulting, licensing, support.
 474. **[openai-realtime-agents](https://github.com/openai/openai-realtime-agents)** | ☆6.5k | Demonstrates building **Realtime**-powered autonomous **agents** to monetize via virtual **assistants**, workflow **automations**, analytics, premium **SaaS** integrations, subscription features, developer APIs for rapid prototyping and scaling.
+
+## Hosted opportunity research
+
+The following is a hosted service, not an open-source project.
+
+- [CueKite](https://cuekite.com) - CueKite helps founders and builders find evidence-backed opportunities that fit their skills and constraints, then turn a chosen Idea into a practical Plan.
