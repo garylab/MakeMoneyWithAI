@@ -132,6 +132,28 @@ def fetch_extra_repo_details(extra_repos):
             print(f"Failed to fetch details for {repo['owner']}/{repo['name']}")
     return detailed_repos
 
+def refresh_existing_repos(existing_repos):
+    """Refresh cached metadata and remove repositories that are archived."""
+    for repo_id, repo_data in list(existing_repos.items()):
+        url = f"https://api.github.com/repos/{repo_data['owner']}/{repo_data['name']}"
+        response = requests.get(url, headers=HEADERS)
+        if response.status_code != 200:
+            print(f"Failed to refresh details for {repo_data['owner']}/{repo_data['name']}")
+            continue
+
+        repository = response.json()
+        if repository.get("archived"):
+            del existing_repos[repo_id]
+            continue
+
+        owner = repository["owner"]["login"]
+        existing_repos[repo_id].update({
+            "owner": owner,
+            "name": repository["name"],
+            "stars": repository["stargazers_count"],
+            "url": repository["html_url"]
+        })
+
 def generate_business_model(repository):
     prompt = f"""
 You are an AI business consultant. Describe following repository in one sentence (around 20 words) to describe what capacities it has that can help me make money. 
@@ -272,6 +294,7 @@ def main(max_repos=None):
     # 1. Read existing repos from CSV file
     print("Reading existing repositories from CSV...")
     existing_repos, existing_repo_ids = read_existing_repos_from_csv()
+    refresh_existing_repos(existing_repos)
     
     # 2. Fetch all repos from GitHub API
     excluded_full_names, excluded_names = load_excluded()

@@ -1,5 +1,4 @@
 id,owner,name,stars,url,business_model
-1206615395,re4,LibreCode,236619,https://github.com/re4/LibreCode,LibreCode - A Ollama cursor like coding / Reversing Interface
 1073224795,obra,superpowers,233454,https://github.com/obra/superpowers,An agentic skills framework & software development methodology that works.
 614765452,Significant-Gravitas,AutoGPT,178788,https://github.com/Significant-Gravitas/AutoGPT,"Use **autonomous agents**, **task automation**, and extensible **plugin** integrations to build commercially scalable SaaS, automated services, marketplace products, and monetizable workflow solutions via **prompt engineering**."
 527591471,AUTOMATIC1111,stable-diffusion-webui,157018,https://github.com/AUTOMATIC1111/stable-diffusion-webui,"Provides a production-ready **AI-image** web UI with **custom-models**, **batch-processing**, **plugins**, and exportable **commercial-assets**, enabling rapid monetization via services, prints, licensing, merchandise, marketplaces, subscriptions, ads, API-integrations."
