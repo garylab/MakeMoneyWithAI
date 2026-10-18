@@ -44,3 +44,4 @@ awesome-mcp-servers
 llm_interview_note
 md
 dbeaver
+Snailclimb/JavaGuide
