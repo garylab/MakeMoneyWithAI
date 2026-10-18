@@ -45,3 +45,4 @@ llm_interview_note
 md
 dbeaver
 Snailclimb/JavaGuide
+bojieli/ai-agent-book

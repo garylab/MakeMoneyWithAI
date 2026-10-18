@@ -10,6 +10,7 @@ TOPICS = ["ai", "ai-agent", "llm"]  # Fetch separately for each topic
 PER_PAGE = 50
 PAGES = 10
 MIN_STARS = 10000
+MAX_REPOS = 100
 OUTPUT_FILE = "README.md"  # Output file name changed to README.md
 EXCLUDE_FILE = "excluded-repos.txt"  # File containing repos to exclude
 CSV_FILE = "repos.csv"  # CSV file to store repository data
@@ -228,6 +229,7 @@ def convert_csv_to_readme():
         repos_list.append(repo_data)
 
     repos_list.sort(key=lambda x: x['stars'], reverse=True)
+    repos_list = repos_list[:MAX_REPOS]
     
     # Save to markdown file
     with open(OUTPUT_FILE, "w") as file:
@@ -265,6 +267,7 @@ def save_repos_to_csv(repos_dict):
 
         repos_list.append(repo_data)
     repos_list.sort(key=lambda x: x['stars'], reverse=True)
+    repos_list = repos_list[:MAX_REPOS]
     
     # Save to CSV file
     with open(CSV_FILE, 'w', newline='', encoding='utf-8') as file:
