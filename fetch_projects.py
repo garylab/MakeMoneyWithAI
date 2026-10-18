@@ -14,6 +14,7 @@ MAX_REPOS = 100
 OUTPUT_FILE = "README.md"  # Output file name changed to README.md
 EXCLUDE_FILE = "excluded-repos.txt"  # File containing repos to exclude
 CSV_FILE = "repos.csv"  # CSV file to store repository data
+LOGO_CSV_FILE = "logos.csv"
 
 # OpenAI API configuration
 OPENAI_API_URL = "https://api.openai.com/v1/chat/completions"
@@ -198,7 +199,7 @@ Note:
 
 
 def convert_csv_to_readme():
-    """Read all data from CSV and convert to README.md format, sorted by stars.
+    """Read repository data and render the sorted README table with available logos.
 
     Applies the same exclusion rules as the fetch step so anything listed in
     excluded-repos.txt is filtered out from the final markdown as well.
@@ -230,16 +231,32 @@ def convert_csv_to_readme():
 
     repos_list.sort(key=lambda x: x['stars'], reverse=True)
     repos_list = repos_list[:MAX_REPOS]
-    
-    # Save to markdown file
+
+    logos = {}
+    with open(LOGO_CSV_FILE, 'r', newline='', encoding='utf-8') as file:
+        for row in csv.DictReader(file):
+            key = (row['owner'].lower(), row['name'].lower())
+            logos.setdefault(key, row['logo'])
+
+    def escape_cell(value):
+        return str(value).replace('\n', ' ').replace('|', '\\|')
+
     with open(OUTPUT_FILE, "w") as file:
         file.write("# Make Money With AI\n\n")
         file.write("**Make Money With AI** is a curated list of AI tools and projects that help you turn open-source into income.\n\n")
-        
+
+        file.write("| NO | Name | Stars | How to make money with this repository |\n")
+        file.write("| --- | --- | --- | --- |\n")
         for index, repo_data in enumerate(repos_list, start=1):
             stars = format_stars(repo_data['stars'])
             business_model = repo_data.get('business_model', '')
-            file.write(f"{index}. **[{repo_data['name']}]({repo_data['url']})** | ☆{stars} | {business_model}\n")
+            logo = logos.get((repo_data['owner'].lower(), repo_data['name'].lower()))
+            image = f'<img src="{logo}" width="14" height="14" /> ' if logo else ''
+            name = f"{image}**[{repo_data['name']}]({repo_data['url']})**"
+            file.write(
+                f"| {index} | {escape_cell(name)} | "
+                f"{escape_cell(f'⭐{stars}')} | {escape_cell(business_model)} |\n"
+            )
     
     print(f"Converted {len(repos_list)} repositories from CSV to README.md")
 
