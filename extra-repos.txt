@@ -9,3 +9,12 @@ mckaywrigley/chatbot-ui
 openai/openai-realtime-agents
 openclaw/openclaw
 microsoft/VibeVoice
+mattpocock/skills
+anthropics/skills
+msitarzewski/agency-agents
+langflow-ai/langflow
+TauricResearch/TradingAgents
+stablyai/orca
+deepseek-ai/deepseek-harness
+NousResearch/hermes-agent
+anomalyco/opencode
