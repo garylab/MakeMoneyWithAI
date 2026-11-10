@@ -49,3 +49,4 @@ bojieli/ai-agent-book
 thedaviddias/Front-End-Checklist
 hugohe3/ppt-master
 shareAI-lab/learn-claude-code
+paperless-ngx/paperless-ngx
