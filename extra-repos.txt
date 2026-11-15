@@ -18,3 +18,6 @@ stablyai/orca
 deepseek-ai/deepseek-harness
 NousResearch/hermes-agent
 anomalyco/opencode
+datawhalechina/hello-agents
+rohitg00/ai-engineering-from-scratch
+Ebony-Vinyl/dsh-our-free-model
