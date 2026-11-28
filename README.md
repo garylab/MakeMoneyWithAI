@@ -1,14 +1,4 @@
-<div align="center">
-
 # Make Money With AI
-
-[![GitHub stars](https://img.shields.io/github/stars/garylab/MakeMoneyWithAI?style=social)](https://github.com/garylab/MakeMoneyWithAI/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/garylab/MakeMoneyWithAI?style=social)](https://github.com/garylab/MakeMoneyWithAI/network/members)
-[![GitHub issues](https://img.shields.io/github/issues/garylab/MakeMoneyWithAI)](https://github.com/garylab/MakeMoneyWithAI/issues)
-[![GitHub last commit](https://img.shields.io/github/last-commit/garylab/MakeMoneyWithAI)](https://github.com/garylab/MakeMoneyWithAI/commits)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-
-</div>
 
 **Make Money With AI** is a curated list of AI tools and projects that help you turn open-source into income.
 
@@ -38,7 +28,7 @@
 | 22 | <img src="logos/graphify.jpeg" width="14" height="14" /> **[graphify](https://github.com/Graphify-Labs/graphify)** | ⭐154.3k | Turn any codebase, with its docs, SQL schemas, configs, and PDFs, into a queryable knowledge graph. A /graphify skill for Claude Code, Cursor, Codex, and Gemini CLI: local deterministic AST parsing, every edge explained, no vector store. |
 | 23 | <img src="logos/spec-kit-logo.jpg" width="14" height="14" /> **[spec-kit](https://github.com/github/spec-kit)** | ⭐152.4k | Helps teams monetize faster by adopting **spec-driven development**, automating **tests**, improving **quality**, accelerating **delivery**, reducing **bugs**, and boosting **developer productivity**, rapidly reducing churn, increasing revenue. |
 | 24 | <img src="logos/langchain.png" width="14" height="14" /> **[langchain](https://github.com/langchain-ai/langchain)** | ⭐150.1k | Accelerates monetization by enabling **LLM**-powered **agents**, reusable **chains**, **retrieval**, **embeddings**, **vector-stores**, connectors, **memory**, monitoring and orchestration for **SaaS** automated workflows, analytics, billing integration, rapid prototyping. |
-| 25 | <img src="logos/comfy-ui.png" width="14" height="14" /> **[ComfyUI](https://github.com/Comfy-Org/ComfyUI)** | ⭐148.9k | Turn a **modular** diffusion GUI with **graph/nodes** workflows and **API**/backend into revenue via custom pipelines, automated content generation, SaaS imaging tools, and plugin integration marketplaces. |
+| 25 | <img src="logos/comfy-ui.png" width="14" height="14" /> **[ComfyUI](https://github.com/Comfy-Org/ComfyUI)** | ⭐149.0k | Turn a **modular** diffusion GUI with **graph/nodes** workflows and **API**/backend into revenue via custom pipelines, automated content generation, SaaS imaging tools, and plugin integration marketplaces. |
 | 26 | **[MoneyPrinterTurbo](https://github.com/harry0703/MoneyPrinterTurbo)** | ⭐146.0k | Automate scalable content production with **AI** one‑click generation of **HD short videos** to drive ads, affiliate sales, subscriptions, and rapid social-media monetization, brand partnerships, analytics |
 | 27 | **[system-prompts-and-models-of-ai-tools](https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools)** | ⭐144.9k | Curated **system prompts** and **AI models** accelerate productization of developer tools, enabling rapid **automation**, improved **code productivity**, and new **SaaS** and consulting revenue streams. |
 | 28 | **[orca](https://github.com/stablyai/orca)** | ⭐142.8k | Orca lets you run a fleet of coding agents (e.g. Claude Code, Codex) with your own subscription. Available on desktop, mobile and remote runtime. |
@@ -49,7 +39,7 @@
 | 33 | <img src="logos/browser-use.png" width="14" height="14" /> **[browser-use](https://github.com/browser-use/browser-use)** | ⭐122.2k | Leverage **browser automation**, **web scraping**, and **AI agents** to create monetizable products: automated lead generation, data extraction, testing pipelines, SaaS workflow automation, subscriptions, and integrations. |
 | 34 | <img src="logos/claude-mem.jpeg" width="14" height="14" /> **[claude-mem](https://github.com/thedotmack/claude-mem)** | ⭐120.2k | Provides **automated** capture and **AI compression** of developer sessions, injecting **context** for faster onboarding, improved productivity, knowledge retention, and monetizable developer workflows, reduced support costs. |
 | 35 | **[VoiceStudio](https://github.com/debpalash/VoiceStudio)** | ⭐119.5k | VoiceStudio is the open-source, fully-local ElevenLabs alternative — voice cloning, voice design, video dubbing, dictation, transcription & audiobook creation in 646 languages. No accounts, no API keys, no cloud. |
-| 36 | **[impeccable](https://github.com/pbakaus/impeccable)** | ⭐118.1k | The design vocabulary for your coding agent. Steer with polish and bolder, review with critique and audit, catch AI slop before it ships. |
+| 36 | **[impeccable](https://github.com/pbakaus/impeccable)** | ⭐118.2k | The design vocabulary for your coding agent. Steer with polish and bolder, review with critique and audit, catch AI slop before it ships. |
 | 37 | <img src="logos/paperclip.png" width="14" height="14" /> **[paperclip](https://github.com/paperclipai/paperclip)** | ⭐117.6k | The open-source app everyone uses to manage agents at work |
 | 38 | <img src="logos/supabase.png" width="14" height="14" /> **[supabase](https://github.com/supabase/supabase)** | ⭐115.5k | Monetize apps using **Postgres**, auto-generated **APIs**, **auth**, **realtime**, **storage**, billing, analytics, and integrations to build scalable web, mobile, and **AI** services with low code workflows. |
 | 39 | **[Agent-Reach](https://github.com/Panniantong/Agent-Reach)** | ⭐115.4k | Monetize web-scale insights with **automated social listening**, **trend intelligence**, and **content sourcing** across Twitter, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu via CLI without API fees profitably. |
