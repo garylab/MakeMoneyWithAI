@@ -1,4 +1,14 @@
+<div align="center">
+
 # Make Money With AI
+
+[![GitHub stars](https://img.shields.io/github/stars/garylab/MakeMoneyWithAI?style=social)](https://github.com/garylab/MakeMoneyWithAI/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/garylab/MakeMoneyWithAI?style=social)](https://github.com/garylab/MakeMoneyWithAI/network/members)
+[![GitHub issues](https://img.shields.io/github/issues/garylab/MakeMoneyWithAI)](https://github.com/garylab/MakeMoneyWithAI/issues)
+[![GitHub last commit](https://img.shields.io/github/last-commit/garylab/MakeMoneyWithAI)](https://github.com/garylab/MakeMoneyWithAI/commits)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
+</div>
 
 **Make Money With AI** is a curated list of AI tools and projects that help you turn open-source into income.
 
